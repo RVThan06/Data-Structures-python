@@ -43,6 +43,7 @@ class LinkedList:
 
         return " --> ".join(node_list)
 
+
     def __iter__(self) -> Node:
         """Iterator to iterate list O(1)."""
 
@@ -51,6 +52,7 @@ class LinkedList:
         while node is not None:
             yield node
             node = node.next
+
 
     def insert_front(self, value : int) -> None:
         """To insert node at front of list O(1)."""
@@ -67,6 +69,7 @@ class LinkedList:
         self.head.prev = new_node
         self.head = new_node
 
+
     def insert_rear(self, value: int) -> None:
         """To insert node to end of list O(1)."""
 
@@ -78,6 +81,7 @@ class LinkedList:
         new_node.prev = self.tail
         self.tail.next = new_node
         self.tail = new_node
+
 
     def insert_before(self, new_value: int, index: int) -> None:
         """To insert node in between list O(n)."""
@@ -105,6 +109,7 @@ class LinkedList:
 
             counter = counter + 1
 
+
     def delete_front(self):
         """To delete node at head O(1)."""
 
@@ -121,6 +126,7 @@ class LinkedList:
         new_head.prev = None
         self.head = new_head
 
+
     def delete_rear(self):
         """To delete node at tail O(1)."""
 
@@ -135,6 +141,7 @@ class LinkedList:
         new_tail = self.tail.prev
         new_tail.next = None
         self.tail = new_tail
+
 
     def delete_before(self, index: int):
         """To delete node before given index O(n)."""
@@ -168,6 +175,7 @@ class LinkedList:
         if not_present:
             return "Index not in list"
 
+
     def search(self, value: int) -> Node:
         """To search for node with given value O(n)."""
 
@@ -184,36 +192,36 @@ class LinkedList:
 
 linked_list = LinkedList()
 
-# insert from rear
+# 1. insert from rear
 for i in range(5):
     linked_list.insert_rear(i)
 
 print(f"After rear insertion \n{linked_list}")
 
-# insert from front
+# 2. insert from front
 for i in range(10,15):
     linked_list.insert_front(i)
 
 print(f"After front insertion \n{linked_list}")
 
-# insert in between list nodes
+# 3. insert in between list nodes
 for i in range(5):
     linked_list.insert_before(new_value=1, index=4)
 
 print(f"After in between insertion \n{linked_list}")
 
-# to delete nodes from front
+# 4. to delete nodes from front
 for i in range(3):
     linked_list.delete_front()
 
 print(f"After front deletion\n{linked_list}")
 
-# to delete nodes from rear
+# 5. to delete nodes from rear
 for i in range(3):
     linked_list.delete_rear()
 print(f"After rear deletion \n{linked_list}")
 
-# to delete before
+# 6. to delete before
 linked_list.delete_before(5)
 print(linked_list)
 
@@ -222,7 +230,7 @@ print(linked_list)
 
 print(linked_list.delete_before(0))  # delete before head impossible
 
-# to search for node with required data
+# 7. to search for node with required data
 
 found_node = linked_list.search(10)
 

@@ -2,7 +2,7 @@
    Hash table implementation in python.
    The hash table only allows unique key,
    With respect to the assumptions made on hash function
-   that on average the hassh function follows perfect uniform hashing.
+   that on average the hash function follows perfect uniform hashing.
    This allows for us to assume the search operation on average is O(1).
 
    In this prograam built in python hash function is used, other hash functions
@@ -100,9 +100,10 @@ class HashTable:
 
 # function calls
 
-# setting table size
+# 1. setting table size
 my_table = HashTable(20)
 
+# 2. inserting multiple key-value pairs, each with unique key
 my_table.insert(["Arvin", 24])
 my_table.insert(['rAvin', 29])
 my_table.insert(["Alan", 23])
@@ -113,17 +114,20 @@ my_table.insert(["erdg", 67])
 my_table.insert(["htej", 37])
 my_table.insert(["kyut", 66])
 
+# 3. print the hashtable
 for value in my_table:
     print(value)
-
 print()
 
+# 4. delete keys from hash table
 print(my_table.delete("Arvin"))
 print(my_table.delete("Ram"))
 
+# 5. print updated hash table
 for value in my_table:
     print(value)
 
+# 6. search for a key
 status = my_table.search("Alan")
 if status:
     print(status[1])

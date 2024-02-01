@@ -21,6 +21,7 @@ class Node:
     def __str__(self) -> str:
         return str(self.data)
 
+
 class LinkedList:
     """To create singly linked list."""
 
@@ -71,15 +72,15 @@ class LinkedList:
             self.head = new_node
             return
 
-        # inseting to rear requires traversal till last node
+        # inserting to rear requires traversal till last node
         for current_node in self:
             pass
         # current node is the last node
         current_node.next = new_node
 
 
-    def insert_before(self, value: int, target_node_data: int) -> None:
-        """Insert data between nodes."""
+    def insert_between(self, value: int, target_node_data: int) -> None:
+        """Insert data between nodes. O(n)"""
 
         if self.head is None:
             return "The list is empty"
@@ -103,7 +104,9 @@ class LinkedList:
 
 
     def delete_node(self, target_node_data: int) -> None:
-        """Delete target node based on value passed O(n)."""
+        """Delete target node based on value passed anywhere within
+            the list O(n).
+        """
 
         if self.head is None:
             return "List if empty"
@@ -162,28 +165,29 @@ class LinkedList:
 
 
 # function calls
-# instatiate linked_list object
+
+# 1. instatiate linked_list object
 linked_list =LinkedList()
 
-# create nodes and store data
+# 2. create nodes and store data
 for i in range(6):
     linked_list.insert_rear(i)
 print(linked_list)
 
-# insert item using various methods
+# 3. insert item using various methods
 linked_list.insert_front(3)
 linked_list.insert_rear(6)
-linked_list.insert_before(value=4, target_node_data=5)
+linked_list.insert_between(value=4, target_node_data=5)
 print(linked_list)
 
-# delete node
+# 4. delete node
 linked_list.delete_node(4)
 print(linked_list)
 
-# search for all position of item 3 in list
+# 5. search for all position of item 3 in list
 print(linked_list.search_item(3))
 
-# retreive item at index 4 which is "3"
+# 6. retreive item at index 4 which is "3"
 print(linked_list.retrieve_data(4))
 
 for i in range(5):
