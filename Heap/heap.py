@@ -49,7 +49,7 @@ class MaxHeap:
     def heapify(self, index:int) -> None:
         """To heapify the heap when building heap."""
 
-        # everytime heapify the whole tree
+        # everytime heapify from newly inserted child to root node
         while index:
             parent_index = mt.ceil(index/2) - 1
 
@@ -63,13 +63,15 @@ class MaxHeap:
 
 
     def heapify_delete(self, index:int) -> None:
-        """Heapify from parent to child."""
+        """Heapify from parent(deleted node) to child."""
 
+        # compare parent iof deleted node index with the child nodes till leaf
         length = len(self.my_heap)
         largest = index
         left_child = 2*index + 1
         right_child = 2*index + 2
 
+        # run algo as long as child nodes exist
         if left_child < length and right_child < length:
             larger_child = left_child
             if self.my_heap[right_child] > self.my_heap[left_child]:
@@ -78,10 +80,12 @@ class MaxHeap:
             if self.my_heap[larger_child] > self.my_heap[index]:
                 largest = larger_child
 
+            # swap parent with child if child is larger
             if largest != index:
                 temp = self.my_heap[index]
                 self.my_heap[index] = self.my_heap[largest]
                 self.my_heap[largest] = temp
+                # next recursion move to child node just swaped
                 self.heapify_delete(largest)
 
 
@@ -116,4 +120,7 @@ new_heap.insert_node(12)
 print(new_heap)
 
 new_heap.insert_node(40)
+print(new_heap)
+
+new_heap.delete_node(31)
 print(new_heap)
