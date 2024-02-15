@@ -36,14 +36,18 @@ class MaxHeap:
 
         index = self.my_heap.index(value)
         last_index = len(self.my_heap) - 1
+
+        # swap node to be deleted with last node
         self.my_heap[index] = self.my_heap[last_index]
+        # remove last node, so value deleted
         self.my_heap.pop()
-        self.heapify(index=last_index-1)
+        # heapify from the deleted index
+        self.heapify_delete(index=index)
         return
 
-
+    # this function is flawed, fix it
     def heapify(self, index:int) -> None:
-        """To heapify the heap."""
+        """To heapify the heap when building heap."""
 
         # everytime heapify the whole tree
         while index:
@@ -56,6 +60,32 @@ class MaxHeap:
                 self.my_heap[index] = temp_value
 
             index = parent_index
+
+
+    def heapify_delete(self, index:int) -> None:
+        """Heapify from parent to child."""
+
+        length = len(self.my_heap)
+        largest = index
+        left_child = 2*index + 1
+        right_child = 2*index + 2
+
+        if left_child < length and right_child < length:
+            larger_child = left_child
+            if self.my_heap[right_child] > self.my_heap[left_child]:
+                larger_child = right_child
+
+            if self.my_heap[larger_child] > self.my_heap[index]:
+                largest = larger_child
+
+            if largest != index:
+                temp = self.my_heap[index]
+                self.my_heap[index] = self.my_heap[largest]
+                self.my_heap[largest] = temp
+                self.heapify_delete(largest)
+
+
+
 
 
 # function calls
@@ -76,3 +106,14 @@ print(new_heap)
 new_heap.delete_node(42)
 print(new_heap)
 
+new_heap.delete_node(44)
+print(new_heap)
+
+new_heap.delete_node(35)
+print(new_heap)
+
+new_heap.insert_node(12)
+print(new_heap)
+
+new_heap.insert_node(40)
+print(new_heap)
